@@ -135,6 +135,8 @@ public class MainActivity extends AppCompatActivity {
                 else {
                     tvResult.setText(result.toString());
                 }
+                firstVar = 0.0;
+                secondVar = 0.0;
                 break;
         }
     }
