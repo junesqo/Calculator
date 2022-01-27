@@ -137,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 firstVar = 0.0;
                 secondVar = 0.0;
+                isOperationClick = true;
                 break;
         }
     }
