@@ -2,9 +2,14 @@ package com.geektech.calculator;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+
+import com.google.android.material.button.MaterialButton;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -13,12 +18,20 @@ public class MainActivity extends AppCompatActivity {
     private Double secondVar;
     private Boolean isOperationClick;
     private String operation;
+    private MaterialButton go_btn;
+
+    public static Activity activity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         tvResult = findViewById(R.id.tv_result);
+        go_btn = findViewById(R.id.go_btn);
+        go_btn.setVisibility(View.INVISIBLE);
+
+        activity = this;
+
     }
 
     public void onNumberClick(View view) {
@@ -135,10 +148,18 @@ public class MainActivity extends AppCompatActivity {
                 else {
                     tvResult.setText(result.toString());
                 }
+                go_btn.setVisibility(View.VISIBLE);
                 firstVar = 0.0;
                 secondVar = 0.0;
                 isOperationClick = true;
                 break;
         }
+    }
+
+    public void onGoClick(View view) {
+        String text = tvResult.getText().toString();
+        Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+        intent.putExtra("key", text);
+        startActivity(intent);
     }
 }
